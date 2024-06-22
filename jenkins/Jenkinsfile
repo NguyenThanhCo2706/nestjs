@@ -1,0 +1,24 @@
+pipeline {
+   agent any
+
+    environment {
+        SERVER_SSH_KEY_FILE = credentials('SERVER_SSH_KEY_FILE')
+    }
+
+   stages {
+        stage('Build Code') {
+            steps {
+                sh """
+                echo "Building Artifact from Develop Branch"
+                yarn install
+                yarn build
+                """
+            }
+        }
+        stage('Deploy Code') {
+            steps {
+                sh 'echo "oke"'
+            }
+        }
+   }
+}
